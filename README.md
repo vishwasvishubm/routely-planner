@@ -1,73 +1,262 @@
-# Welcome to your Lovable project
+# RouteX - Travel Management PWA
 
-## Project info
+<div align="center">
+  <img src="public/icon-192x192.png" alt="RouteX Logo" width="120" height="120" />
+  
+  **Your ultimate travel companion for managing trips, tracking expenses, and capturing memories**
+  
+  [![PWA](https://img.shields.io/badge/PWA-enabled-blue)](https://web.dev/progressive-web-apps/)
+  [![Offline First](https://img.shields.io/badge/Offline-First-green)](https://developers.google.com/web/fundamentals/instant-and-offline/offline-first)
+  [![React](https://img.shields.io/badge/React-18.3.1-blue)](https://reactjs.org/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-Latest-blue)](https://www.typescriptlang.org/)
+</div>
 
-**URL**: https://lovable.dev/projects/6ec6b540-83b3-4ba1-90a8-8ef73f203e45
+## ✨ Features
 
-## How can I edit this code?
+### 🗺️ Trip Management
+- **Create, edit, and organize trips** with detailed information
+- **Visual trip cards** with status indicators (upcoming, active, completed)
+- **Smart trip statistics** and progress tracking
+- **Beautiful, responsive interface** for all devices
 
-There are several ways of editing your application.
+### 📅 Itinerary Planning
+- **Daily itinerary management** with time-based organization
+- **Location and notes** for each activity
+- **Reminder system** with browser notifications
+- **Seamless integration** with trip details
 
-**Use Lovable**
+### 💰 Expense Tracking
+- **Category-based expense tracking** (food, hotel, transport, etc.)
+- **Receipt photo uploads** and storage
+- **Visual expense charts** and summaries
+- **Multi-currency support** for international travel
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6ec6b540-83b3-4ba1-90a8-8ef73f203e45) and start prompting.
+### 📸 Memory Capture
+- **Photo gallery** for trip memories
+- **Notes and captions** for each memory
+- **Organized by trip** for easy browsing
+- **Offline storage** and viewing
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🤖 AI Suggestions
+- **Personalized recommendations** for attractions and restaurants
+- **Hidden gems discovery** powered by AI
+- **Location-based suggestions** (coming soon)
+- **User preference learning** (coming soon)
 
-**Use your preferred IDE**
+### 📱 Progressive Web App
+- **Offline-first architecture** using IndexedDB
+- **Service Worker caching** for instant loading
+- **Install on any device** like a native app
+- **Background sync** when connection returns
+- **Push notifications** for reminders
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Tech Stack
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Frontend
+- **React 18** with TypeScript for robust development
+- **Vite** for lightning-fast build and development
+- **TailwindCSS** with custom design system
+- **Shadcn/UI** components for consistent interface
+- **React Router** for seamless navigation
+- **Zustand** for lightweight state management
 
-Follow these steps:
+### Data & Storage
+- **IndexedDB** via LocalForage for offline data storage
+- **Service Worker** with Workbox for caching
+- **UUID** for unique record identification
+- **React Query** for data fetching and caching
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Charts & Visualization
+- **Recharts** for expense visualization
+- **Custom charts** for trip statistics
+- **Responsive design** for all screen sizes
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### PWA Features
+- **Web App Manifest** for installability
+- **Service Worker** for offline functionality
+- **Background sync** for data synchronization
+- **Push notifications** for reminders
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🚀 Getting Started
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Prerequisites
+- Node.js 18+ and npm
+- Modern web browser with PWA support
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd routex
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in browser**
+   ```
+   http://localhost:8080
+   ```
+
+### Building for Production
+
+```bash
+# Build the application
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## 📱 PWA Installation
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### On Desktop
+1. Open RouteX in Chrome, Edge, or Firefox
+2. Look for the "Install" button in the address bar
+3. Click "Install" to add RouteX to your applications
 
-**Use GitHub Codespaces**
+### On Mobile
+1. Open RouteX in your mobile browser
+2. Tap the browser menu (⋮ or share button)
+3. Select "Add to Home Screen" or "Install App"
+4. Tap "Add" to install RouteX
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 💾 Data Storage
 
-## What technologies are used for this project?
+RouteX uses a robust offline-first data storage approach:
 
-This project is built with:
+### Local Storage (IndexedDB)
+- **Trips**: Complete trip information and metadata
+- **Itinerary**: Daily activities and schedules  
+- **Expenses**: Financial tracking with categories
+- **Memories**: Photos, notes, and experiences
+- **Reminders**: Notification settings and schedules
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Database Schema
+```typescript
+// Core entities with UUID identification
+trips: { id, title, destination, startDate, endDate, notes, synced }
+itinerary_items: { id, tripId, title, location, startTime, endTime, notes, synced }
+expenses: { id, tripId, amount, currency, category, date, note, receiptPath, synced }
+memories: { id, tripId, type, content, title, date, synced }
+reminders: { id, itemId, notifyTime, repeatRule, isActive, synced }
+```
 
-## How can I deploy this project?
+### Sync Strategy
+- All records include a `synced` flag for future backend integration
+- Changes are stored locally first for instant responsiveness
+- Background sync will handle server synchronization when implemented
 
-Simply open [Lovable](https://lovable.dev/projects/6ec6b540-83b3-4ba1-90a8-8ef73f203e45) and click on Share -> Publish.
+## 🎨 Design System
 
-## Can I connect a custom domain to my Lovable project?
+RouteX features a beautiful, travel-inspired design system:
 
-Yes, you can!
+### Color Palette
+- **Ocean Blue** (#0ea5e9) - Primary brand color
+- **Sunset Orange** (#f97316) - Accent and warmth  
+- **Travel Sky** (#dbeafe) - Light backgrounds
+- **Success Green** (#059669) - Positive actions
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Typography
+- **System fonts** for optimal performance
+- **Responsive sizing** for all devices
+- **Semantic hierarchy** for accessibility
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### Components
+- **Card-based layouts** with subtle shadows
+- **Gradient backgrounds** for visual appeal
+- **Smooth animations** and transitions
+- **Status indicators** for trip states
+
+## 🔧 Development
+
+### Project Structure
+```
+src/
+├── components/          # Reusable UI components
+│   ├── layout/         # Navigation and layout
+│   ├── trips/          # Trip-related components
+│   └── ui/             # Shadcn/UI components
+├── pages/              # Route components
+├── services/           # Data services and API
+├── stores/             # Zustand state management
+├── types/              # TypeScript definitions
+└── lib/                # Utilities and helpers
+```
+
+### Key Scripts
+```bash
+npm run dev          # Development server
+npm run build        # Production build
+npm run preview      # Preview production build
+npm run lint         # Code linting
+npm run type-check   # TypeScript checking
+```
+
+### Contributing
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes with tests
+4. Submit a pull request
+
+## 🚀 Roadmap
+
+### Phase 1: Core Features ✅
+- [x] Trip management CRUD operations
+- [x] Basic itinerary planning
+- [x] Expense tracking with categories
+- [x] Memory capture and storage
+- [x] Offline-first PWA functionality
+- [x] Responsive design
+
+### Phase 2: Enhanced Features 🚧
+- [ ] Trip detail pages with tabs
+- [ ] Advanced expense charts and analytics
+- [ ] Photo editing and organization
+- [ ] Calendar integration
+- [ ] Export functionality
+
+### Phase 3: Smart Features 🔮
+- [ ] Backend integration and sync
+- [ ] Real AI-powered suggestions
+- [ ] Location-based recommendations  
+- [ ] Social sharing features
+- [ ] Collaborative trip planning
+
+### Phase 4: Advanced PWA 🌟
+- [ ] Background sync implementation
+- [ ] Push notification system
+- [ ] Offline maps integration
+- [ ] Voice input and commands
+- [ ] Multi-language support
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Shadcn/UI** for beautiful component library
+- **TailwindCSS** for utility-first styling
+- **Lucide Icons** for consistent iconography
+- **React Community** for excellent ecosystem
+
+---
+
+<div align="center">
+  <strong>Built with ❤️ for travelers worldwide</strong>
+  
+  <br />
+  
+  <a href="#getting-started">Get Started</a> • 
+  <a href="#features">Features</a> • 
+  <a href="#roadmap">Roadmap</a>
+</div>
