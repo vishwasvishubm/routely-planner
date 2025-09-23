@@ -191,30 +191,38 @@ export const initializeDemoData = async () => {
 
   const now = Date.now();
   const demoTrip = await tripsService.create({
-    title: 'Tokyo Adventure',
-    destination: 'Tokyo, Japan',
+    title: 'Kerala Backwaters Adventure',
+    destination: 'Alleppey & Kumarakom, Kerala',
     startDate: now + (7 * 24 * 60 * 60 * 1000), // 7 days from now
     endDate: now + (14 * 24 * 60 * 60 * 1000), // 14 days from now
-    notes: 'Cherry blossom season exploration with cultural experiences',
+    notes: 'Explore the serene backwaters, traditional houseboats, and lush green landscapes of Kerala. Experience local culture, spice plantations, and Ayurvedic treatments.',
   });
 
   // Add some demo itinerary items
   await Promise.all([
     itineraryService.create({
       tripId: demoTrip.id,
-      title: 'Arrive at Narita Airport',
-      location: 'Narita International Airport',
+      title: 'Arrive in Kochi',
+      location: 'Cochin International Airport',
       startTime: now + (7 * 24 * 60 * 60 * 1000),
       endTime: now + (7 * 24 * 60 * 60 * 1000) + (2 * 60 * 60 * 1000),
-      notes: 'Pick up JR Pass and take train to hotel',
+      notes: 'Land in Kochi, transfer to hotel and explore Fort Kochi in the evening',
     }),
     itineraryService.create({
       tripId: demoTrip.id,
-      title: 'Visit Senso-ji Temple',
-      location: 'Asakusa, Tokyo',
+      title: 'Houseboat Experience',
+      location: 'Alleppey Backwaters',
       startTime: now + (8 * 24 * 60 * 60 * 1000),
-      endTime: now + (8 * 24 * 60 * 60 * 1000) + (3 * 60 * 60 * 1000),
-      notes: 'Explore Tokyo\'s oldest temple and traditional shopping street',
+      endTime: now + (8 * 24 * 60 * 60 * 1000) + (6 * 60 * 60 * 1000),
+      notes: 'Full day houseboat cruise through the backwaters with traditional Kerala meals',
+    }),
+    itineraryService.create({
+      tripId: demoTrip.id,
+      title: 'Spice Plantation Tour',
+      location: 'Thekkady, Periyar',
+      startTime: now + (10 * 24 * 60 * 60 * 1000),
+      endTime: now + (10 * 24 * 60 * 60 * 1000) + (4 * 60 * 60 * 1000),
+      notes: 'Guided tour of cardamom, pepper, and cinnamon plantations',
     }),
   ]);
 
@@ -222,19 +230,27 @@ export const initializeDemoData = async () => {
   await Promise.all([
     expensesService.create({
       tripId: demoTrip.id,
-      amount: 1200,
-      currency: 'USD',
+      amount: 15000,
+      currency: 'INR',
       category: 'hotel',
       date: now,
-      note: 'Hotel booking for 7 nights',
+      note: 'Houseboat booking for 2 nights in Alleppey',
     }),
     expensesService.create({
       tripId: demoTrip.id,
-      amount: 89,
-      currency: 'USD',
+      amount: 2500,
+      currency: 'INR',
       category: 'transport',
       date: now,
-      note: '7-day JR Pass',
+      note: 'Taxi from Kochi to Alleppey',
+    }),
+    expensesService.create({
+      tripId: demoTrip.id,
+      amount: 1200,
+      currency: 'INR',
+      category: 'food',
+      date: now,
+      note: 'Traditional Kerala Sadhya lunch',
     }),
   ]);
 };

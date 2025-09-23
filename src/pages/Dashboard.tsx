@@ -62,11 +62,11 @@ export default function Dashboard() {
       <div className="relative overflow-hidden rounded-3xl bg-gradient-hero p-8 md:p-12 text-white">
         <div className="relative z-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Welcome to RouteX
+            Discover God's Own Country
           </h1>
           <p className="text-lg md:text-xl opacity-90 mb-6 max-w-2xl">
-            Your ultimate travel companion for managing trips, tracking expenses, 
-            and capturing memories. Plan better, spend smarter, remember everything.
+            Your ultimate companion for exploring Kerala's backwaters, hill stations, 
+            and pristine beaches. Plan your Kerala journey, track expenses, and capture memories.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link to="/trips/new">
@@ -218,10 +218,10 @@ export default function Dashboard() {
           <div className="w-24 h-24 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-6">
             <MapPin className="w-12 h-12 text-white" />
           </div>
-          <h3 className="text-2xl font-bold mb-4">Start Your Journey</h3>
+          <h3 className="text-2xl font-bold mb-4">Start Your Kerala Adventure</h3>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-            Create your first trip to begin tracking expenses, planning itineraries, 
-            and capturing memories.
+            Create your first Kerala trip to explore backwaters, hill stations, beaches,
+            and cultural experiences across God's Own Country.
           </p>
           <Link to="/trips/new">
             <Button size="lg" className="btn-hero">

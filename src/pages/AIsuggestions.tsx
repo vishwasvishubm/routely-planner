@@ -5,92 +5,112 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 
-// Mock data for AI suggestions
+// Mock data for Kerala AI suggestions
 const mockSuggestions = {
   attractions: [
     {
       id: '1',
-      name: 'Tokyo Skytree',
-      category: 'Landmark',
-      rating: 4.8,
+      name: 'Alleppey Backwaters',
+      category: 'Natural Beauty',
+      rating: 4.9,
       price: '$$',
-      duration: '2-3 hours',
-      description: 'Iconic tower with panoramic city views and shopping complex',
-      image: '🗼',
+      duration: '4-6 hours',
+      description: 'Serene backwater cruise through palm-fringed canals and traditional villages',
+      image: '🛶',
     },
     {
       id: '2',
-      name: 'Senso-ji Temple',
-      category: 'Cultural',
-      rating: 4.7,
-      price: 'Free',
-      duration: '1-2 hours',
-      description: 'Ancient Buddhist temple with traditional shopping street',
-      image: '⛩️',
+      name: 'Munnar Tea Gardens',
+      category: 'Hill Station',
+      rating: 4.8,
+      price: '$',
+      duration: '3-4 hours',
+      description: 'Rolling hills covered with lush tea plantations and misty mountains',
+      image: '🌿',
     },
     {
       id: '3',
-      name: 'Shibuya Crossing',
-      category: 'Experience',
+      name: 'Fort Kochi',
+      category: 'Historical',
+      rating: 4.7,
+      price: 'Free',
+      duration: '2-3 hours',
+      description: 'Colonial architecture, Chinese fishing nets, and vibrant art galleries',
+      image: '🏰',
+    },
+    {
+      id: '4',
+      name: 'Varkala Beach',
+      category: 'Beach',
       rating: 4.6,
       price: 'Free',
-      duration: '30 min',
-      description: 'World\'s busiest pedestrian crossing and vibrant district',
-      image: '🚶‍♂️',
+      duration: '4-5 hours',
+      description: 'Dramatic clifftop beach with mineral springs and sunset views',
+      image: '🏖️',
     },
   ],
   restaurants: [
     {
-      id: '4',
-      name: 'Sukiyabashi Jiro',
-      category: 'Sushi',
-      rating: 4.9,
-      price: '$$$$',
-      duration: '1-2 hours',
-      description: 'World-renowned sushi restaurant with michelin stars',
-      image: '🍣',
-    },
-    {
       id: '5',
-      name: 'Ramen Yashichi',
-      category: 'Ramen',
-      rating: 4.5,
-      price: '$',
-      duration: '30-45 min',
-      description: 'Authentic tonkotsu ramen in cozy local setting',
-      image: '🍜',
+      name: 'Thaff Restaurant',
+      category: 'Traditional Kerala',
+      rating: 4.8,
+      price: '$$',
+      duration: '1-2 hours',
+      description: 'Authentic Kerala Sadhya served on banana leaves with 20+ dishes',
+      image: '🍛',
     },
     {
       id: '6',
-      name: 'Tempura Daikokuya',
-      category: 'Tempura',
-      rating: 4.6,
+      name: 'Oceanos Restaurant',
+      category: 'Seafood',
+      rating: 4.7,
       price: '$$$',
-      duration: '1 hour',
-      description: 'Traditional tempura restaurant since 1887',
-      image: '🍤',
+      duration: '1-2 hours',
+      description: 'Fresh catch from Arabian Sea with Kerala spices and coconut',
+      image: '🦐',
+    },
+    {
+      id: '7',
+      name: 'Sree Krishna Inn',
+      category: 'Local Cuisine',
+      rating: 4.5,
+      price: '$',
+      duration: '45 min',
+      description: 'Famous for Kerala breakfast - appam, puttu, and fish curry',
+      image: '🥥',
     },
   ],
   hidden: [
     {
-      id: '7',
-      name: 'Omoide Yokocho',
-      category: 'Nightlife',
-      rating: 4.4,
-      price: '$$',
-      duration: '2-3 hours',
-      description: 'Narrow alley with tiny yakitori stalls and bars',
-      image: '🏮',
+      id: '8',
+      name: 'Kumbakonam Spice Market',
+      category: 'Local Experience',
+      rating: 4.6,
+      price: '$',
+      duration: '1-2 hours',
+      description: 'Aromatic spice market with cardamom, pepper, and cinnamon direct from farms',
+      image: '🌶️',
     },
     {
-      id: '8',
-      name: 'Kichijoji Cat Cafe',
-      category: 'Unique',
-      rating: 4.3,
+      id: '9',
+      name: 'Backwater Village Homestay',
+      category: 'Cultural',
+      rating: 4.7,
       price: '$$',
-      duration: '1 hour',
-      description: 'Cozy cafe where you can relax with friendly cats',
-      image: '🐱',
+      duration: 'Full day',
+      description: 'Stay with local families, learn toddy tapping and coconut farming',
+      image: '🏠',
+    },
+    {
+      id: '10',
+      name: 'Cherai Beach Dolphins',
+      category: 'Wildlife',
+      rating: 4.4,
+      price: '$',
+      duration: '2-3 hours',
+      description: 'Early morning dolphin spotting cruise at secluded Cherai Beach',
+      image: '🐬',
     },
   ],
 };
@@ -131,9 +151,9 @@ export default function AISuggestions() {
           <Sparkles className="w-8 h-8 text-white" />
         </div>
         <div>
-          <h1 className="text-3xl font-bold">AI Travel Suggestions</h1>
+          <h1 className="text-3xl font-bold">Kerala Travel Suggestions</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Discover amazing places, restaurants, and hidden gems powered by AI recommendations
+            Discover amazing destinations, authentic cuisine, and hidden gems across God's Own Country
           </p>
         </div>
       </div>
@@ -245,12 +265,12 @@ export default function AISuggestions() {
         <CardContent className="p-6 text-center">
           <Sparkles className="w-12 h-12 text-primary mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-primary mb-2">
-            AI-Powered Personalization Coming Soon!
+            Kerala-Focused AI Recommendations Coming Soon!
           </h3>
           <p className="text-sm text-muted-foreground">
-            These are sample suggestions. Soon, our AI will analyze your preferences, 
+            These are sample Kerala suggestions. Soon, our AI will analyze your preferences, 
             travel history, and current location to provide personalized recommendations 
-            tailored just for you.
+            for the best Kerala experiences tailored just for you.
           </p>
         </CardContent>
       </Card>
