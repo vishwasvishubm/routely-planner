@@ -29,7 +29,9 @@ export const useTripStore = create<TripStore>((set, get) => ({
   loadTrips: async () => {
     set({ isLoading: true, error: null });
     try {
+      console.log('Loading trips from database...');
       const trips = await tripsService.getAll();
+      console.log('Loaded trips:', trips.length);
       set({ trips, isLoading: false });
       
       // Load stats for all trips
@@ -37,6 +39,7 @@ export const useTripStore = create<TripStore>((set, get) => ({
         await get().loadTripStats(trip.id);
       }
     } catch (error) {
+      console.error('Error loading trips:', error);
       set({ error: error instanceof Error ? error.message : 'Failed to load trips', isLoading: false });
     }
   },

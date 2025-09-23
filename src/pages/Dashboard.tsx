@@ -8,20 +8,46 @@ import { initializeDemoData } from '@/services/database';
 import { Link } from 'react-router-dom';
 
 export default function Dashboard() {
-  const { trips, tripStats, isLoading, loadTrips } = useTripStore();
+  const { trips, tripStats, isLoading, error, clearError, loadTrips } = useTripStore();
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     const initializeApp = async () => {
       if (!isInitialized) {
-        await initializeDemoData();
-        await loadTrips();
-        setIsInitialized(true);
+        try {
+          console.log('Initializing demo data...');
+          await initializeDemoData();
+          console.log('Demo data initialized, loading trips...');
+          await loadTrips();
+          console.log('Trips loaded successfully');
+          setIsInitialized(true);
+        } catch (error) {
+          console.error('Error initializing app:', error);
+          setIsInitialized(true); // Set anyway to avoid infinite loading
+        }
       }
     };
     
     initializeApp();
   }, [loadTrips, isInitialized]);
+
+  // Show error if there is one
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-center space-y-4 max-w-md">
+          <div className="w-12 h-12 bg-destructive/10 rounded-full flex items-center justify-center mx-auto">
+            <MapPin className="w-6 h-6 text-destructive" />
+          </div>
+          <h3 className="text-xl font-semibold text-destructive">Something went wrong</h3>
+          <p className="text-muted-foreground">{error}</p>
+          <Button onClick={clearError} variant="outline">
+            Try Again
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   const activeTrips = trips.filter(trip => {
     const stats = tripStats[trip.id];
@@ -45,12 +71,12 @@ export default function Dashboard() {
     0
   );
 
-  if (isLoading && !isInitialized) {
+  if (isLoading || !isInitialized) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center space-y-4">
           <div className="w-12 h-12 bg-gradient-hero rounded-full animate-pulse mx-auto"></div>
-          <p className="text-muted-foreground">Loading your trips...</p>
+          <p className="text-muted-foreground">Loading your Kerala adventures...</p>
         </div>
       </div>
     );
